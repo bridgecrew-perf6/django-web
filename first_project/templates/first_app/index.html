@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "css/main.css"%}" >
+</head>
+<body>
+<h1 class="font-bold">hello ci</h1>
+{% if data %}
+<table>
+    <tr>
+        <td>name</td>
+        <td>address</td>
+    </tr>
+    {% for item in data  %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.web_address}}</td>
+        </tr>
+    {%  endfor%}
+</table>
+{% endif %}
+
+
+<img src="{% static "images/test.jpg" %}">
+</body>
+</html>

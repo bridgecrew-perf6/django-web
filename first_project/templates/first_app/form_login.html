@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form method="POST">
+            {{form.as_p}}
+<!--            <div>-->
+<!--                <label>user name 2:</label>-->
+<!--                <input type="text" name="username2" value="">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label>Password:</label>-->
+<!--                <input type="password" name="password2" value="">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <textarea name="note2"></textarea>-->
+<!--            </div>-->
+            {% csrf_token %}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
