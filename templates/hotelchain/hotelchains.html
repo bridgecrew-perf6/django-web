@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+    <h3>list hotels chain</h3>
+    <br>
+    <a href="{% url 'hotelpartner:newhotelchain' %}">Create new hotel chain</a>
+    <br>
+
+{% for hotel_chain in page_hotel_chains %}
+{#    <label>name:</label> <a href="{% url 'hotelpartner:detailhotelchain' pk=hotel_chain.id %}">{{ hotel_chain.name }}</a>#}
+    <br/>
+    <label>name:</label> <a href="{{ hotel_chain.get_absolute_url }}">{{ hotel_chain.name }} solution 2</a>
+
+    <br/>
+    <label>state:</label> {{ hotel_chain.state }}
+    <br/>
+    <label>order:</label> {{ hotel_chain.order }}
+    <br>
+
+    <a href="javascript:void;" onclick="submitForm({{ hotel_chain.id }})">delete</a>
+    <br>
+    ===========
+    <br/>
+    {% endfor %}
+
+    </div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_hotel_chains.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_hotel_chains.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_hotel_chains.number }} of {{ page_hotel_chains.paginator.num_pages }}.
+        </span>
+
+        {% if page_hotel_chains.has_next %}
+            <a href="?page={{ page_hotel_chains.next_page_number }}">next</a>
+            <a href="?page={{ page_hotel_chains.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+    <form method="POST" id="delete-hotel-chain" action="{% url 'hotelpartner:deletehotelchain' %}">
+    <input type="text" id="pk" name="pk" value="">
+{% csrf_token %}
+    </form>
+    <script type="text/javascript">
+    function submitForm(pk)
+    {
+        document.getElementById("pk").value = pk;
+         document.getElementById("delete-hotel-chain").submit();
+    }
+
+    </script>
+
+{% endblock %}
+

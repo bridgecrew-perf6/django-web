@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <ul>
+        <li><a href="newhotelchain">newhotelchain</a></li>
+        <li></li>
+    </ul>
+    Home page
+</div>
+<div>
+    {% if user.is_authenticated %}
+    Wellcome, {{ user.get_username }}
+    <a href="logout">Logout</a>
+    {% else %}
+    <a href="login" >Login di</a>
+    {% endif %}
+
+</div>
+{% endblock %}
